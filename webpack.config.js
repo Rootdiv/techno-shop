@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const PAGES = ['index', 'cart', 'card'];
+
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
@@ -29,9 +31,13 @@ module.exports = {
     assetModuleFilename: 'assets/[name][ext]',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
-    }),
+    ...PAGES.map(
+      page =>
+        new HtmlWebpackPlugin({
+          template: path.resolve(__dirname, 'src', `${page}.html`),
+          filename: `${page}.html`,
+        }),
+    ),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
