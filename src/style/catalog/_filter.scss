@@ -40,10 +40,13 @@
     width: 165px;
     font-size: 16px;
     line-height: 20px;
+    border: 1px solid $color-primary;
 
     &_select {
       width: 100%;
       color: $color-grey;
+      background-color: #fff;
+      border: 1px solid $color-primary;
     }
 
     &::placeholder {
