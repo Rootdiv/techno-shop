@@ -1,0 +1,40 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  &__arrow {
+    padding: 8px 15px;
+
+    &_start {
+      opacity: 50%;
+    }
+
+    &_end {
+      opacity: 100%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  &__item {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__link {
+    padding: 8px 15px;
+    border: 2px solid transparent;
+
+    &_active {
+      border: 2px solid $color-main;
+      border-radius: 2px;
+    }
+  }
+}

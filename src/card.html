@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./img/favicon.png" type="image/png" />
     <title>Techno Shop - Интернет-магазин гаджетов - Карточка товара</title>
   </head>
   <body>
     <header class="header">
       <h1 class="visually-hidden">Techno Shop - Интернет-магазин гаджетов</h1>
-      <div class="container">
-        <a href="./"><img src="./img/logo.svg" alt="Логотип Techno Shop" class="header__logo" /></a>
+      <div class="container header__container">
+        <a href="./" class="header__logo-link">
+          <img src="./img/logo.svg" alt="Логотип Techno Shop" class="header__logo" />
+        </a>
         <form class="header__search search">
           <input type="search" class="search__input" />
           <button class="search__button" aria-label="Найти товар">
@@ -44,38 +48,38 @@
             <div class="card__gallery">
               <div class="swiper card__image">
                 <ul class="swiper-wrapper">
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <img src="./img/clock1.jpg" alt="" />
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <img src="./img/clock2.jpg" alt="" />
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <img src="./img/clock3.jpg" alt="" />
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <img src="./img/clock4.jpg" alt="" />
                   </li>
                 </ul>
               </div>
               <div class="swiper card__slide-thumb">
                 <ul class="swiper-wrapper">
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <button class="card__thumb-btn">
                       <img src="./img/clock1-m.jpg" alt="" />
                     </button>
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <button class="card__thumb-btn">
                       <img src="./img/clock2-m.jpg" alt="" />
                     </button>
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <button class="card__thumb-btn">
                       <img src="./img/clock3-m.jpg" alt="" />
                     </button>
                   </li>
-                  <li class="swiper__slide">
+                  <li class="swiper-slide">
                     <button class="card__thumb-btn">
                       <img src="./img/clock4-m.jpg" alt="" />
                     </button>
@@ -156,6 +160,43 @@
                 <article class="goods-item">
                   <a href="./card.html" class="goods-item__link">
                     <img src="./img/iphone.jpg" alt="Смартфон APPLE iPhone 12 64GB Purple" class="goods-item__image" />
+                    <h3 class="goods-item__title">Смартфон APPLE iPhone 12 64GB Purple Смартфон APPLE iPhone 12 64GB
+                      Purple Смартфон APPLE iPhone 12 64GB Purple</h3>
+                  </a>
+                  <div class="goods-item__buy">
+                    <p class="goods-item__price">120 999 ₽</p>
+                    <button class="goods-item__to-card">В корзину</button>
+                  </div>
+                </article>
+              </li>
+              <li class="swiper-slide">
+                <article class="goods-item">
+                  <a href="./card.html" class="goods-item__link">
+                    <img src="./img/iphone.jpg" alt="Смартфон APPLE iPhone 12 64GB Purple" class="goods-item__image" />
+                    <h3 class="goods-item__title">Смартфон APPLE iPhone 12 64GB Purple</h3>
+                  </a>
+                  <div class="goods-item__buy">
+                    <p class="goods-item__price">120 999 ₽</p>
+                    <button class="goods-item__to-card">В корзину</button>
+                  </div>
+                </article>
+              </li>
+              <li class="swiper-slide">
+                <article class="goods-item">
+                  <a href="./card.html" class="goods-item__link">
+                    <img src="./img/iphone.jpg" alt="Смартфон APPLE iPhone 12 64GB Purple" class="goods-item__image" />
+                    <h3 class="goods-item__title">Смартфон APPLE iPhone 12 64GB Purple</h3>
+                  </a>
+                  <div class="goods-item__buy">
+                    <p class="goods-item__price">120 999 ₽</p>
+                    <button class="goods-item__to-card">В корзину</button>
+                  </div>
+                </article>
+              </li>
+              <li class="swiper-slide">
+                <article class="goods-item">
+                  <a href="./card.html" class="goods-item__link">
+                    <img src="./img/iphone.jpg" alt="Смартфон APPLE iPhone 12 64GB Purple" class="goods-item__image" />
                     <h3 class="goods-item__title">Смартфон APPLE iPhone 12 64GB Purple</h3>
                   </a>
                   <div class="goods-item__buy">
@@ -196,36 +237,38 @@
     </main>
     <footer class="footer">
       <h2 class="visually-hidden">Меню и контакты сайта</h2>
-      <div class="container">
-        <a href="./"><img src="./img/logo.svg" alt="Логотип Techno Shop" class="footer__logo" /></a>
+      <div class="container footer__container">
+        <a href="./" class="footer__logo-link">
+          <img src="./img/logo.svg" alt="Логотип Techno Shop" class="footer__logo" />
+        </a>
         <div class="footer__column">
           <h3 class="footer__column-title">Каталог</h3>
           <ul class="footer__list footer__list_double">
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Смартфоны</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Электронные книги</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Планшеты</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Мониторы</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Умные часы</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Смарт-приставка</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Моноблоки</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Процессоры</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Ноутбуки</a>
             </li>
           </ul>
@@ -233,16 +276,16 @@
         <div class="footer__column">
           <h3 class="footer__column-title">Покупателям</h3>
           <ul class="footer__list">
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Оплата заказа</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Условия доставки</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Условия возврата заказа</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Блог</a>
             </li>
           </ul>
@@ -250,10 +293,10 @@
         <div class="footer__column">
           <h3 class="footer__column-title">Контакты</h3>
           <ul class="footer__list footer__list_contacts">
-            <li class="footer__list-item">Тел:
+            <li class="footer__item footer__item_contact">Тел:
               <a href="tel:+79149239223" class="footer__link">8 914 923 92 - 23</a>
             </li>
-            <li class="footer__list-item">Email:
+            <li class="footer__item footer__item_contact">Email:
               <a href="mailto:TechnoSHOP@gmail.com" class="footer__link">TechnoSHOP@gmail.com</a>
             </li>
           </ul>
@@ -286,6 +329,13 @@
               </a>
             </li>
           </ul>
+        </div>
+        <div class="footer__copyright-brand">
+          &copy; TechnoSHOP, 2022
+        </div>
+        <div class="footer__copyright-design design">
+          <div class="design__name">Design by Anastasia Ilina</div>
+          Tg: <a href="https://t.me/Mrshmallowww" target="_blank" class="design__link">&#64;Mrshmallowww</a>
         </div>
       </div>
     </footer>

@@ -13,6 +13,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
+  color: $color-primary;
+  background-color: $color-secondary;
 }
 
 img,
@@ -41,10 +43,16 @@ ul {
 h1,
 h2,
 h3,
+h4,
 p,
-figure,
-fieldset {
+figure {
   margin: 0;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .visually-hidden {
@@ -53,6 +61,16 @@ fieldset {
 }
 
 .container {
-  max-width: 1820px;
+  max-width: 1880px;
+  padding: 0 30px;
   margin: 0 auto;
+}
+
+.main {
+  padding-top: 44px;
+  padding-bottom: 120px;
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  display: none;
 }

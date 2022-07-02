@@ -11,8 +11,10 @@
   <body>
     <header class="header">
       <h1 class="visually-hidden">Techno Shop - Интернет-магазин гаджетов</h1>
-      <div class="container">
-        <a href="./"><img src="./img/logo.svg" alt="Логотип Techno Shop" class="header__logo" /></a>
+      <div class="container header__container">
+        <a href="./" class="header__logo-link">
+          <img src="./img/logo.svg" alt="Логотип Techno Shop" class="header__logo" />
+        </a>
         <form class="header__search search">
           <input type="search" class="search__input" />
           <button class="search__button" aria-label="Найти товар">
@@ -168,56 +170,59 @@
             <aside class="catalog__filter filter">
               <form class="filter__form">
                 <h3 class="filter__title">Фильтры</h3>
-                <fieldset class="filter__field">
-                  <legend class="filter__field-title">Цена</legend>
-                  <div class="filter__flex">
-                    <label><input type="number" name="price-start" placeholder="от" class="filter__input" /></label>
-                    <label><input type="number" name="price-end" placeholder="до" class="filter__input" /></label>
-                  </div>
-                </fieldset>
-                <fieldset class="filter__field">
-                  <legend class="filter__field-title">Категория</legend>
-                  <label>
-                    <select name="category" class="filter__select">
-                      <option selected value="all">Все категории</option>
-                      <option value="phone">Смартфоны</option>
-                      <option value="tablet">Планшеты</option>
-                      <option value="clock">Умные часы</option>
-                      <option value="monoblock">Моноблоки</option>
-                      <option value="notebook">Ноутбуки</option>
-                    </select>
-                  </label>
-                </fieldset>
-                <fieldset class="filter__field">
-                  <legend class="filter__field-title">Диагональ</legend>
-                  <div class="filter__flex">
-                    <label><input type="number" name="diagonal-start" placeholder="от" class="filter__input" /></label>
-                    <label><input type="number" name="diagonal-end" placeholder="до" class="filter__input" /></label>
-                  </div>
-                </fieldset>
-                <fieldset class="filter__field">
-                  <legend class="filter__field-title">Цвет</legend>
-                  <div class="filter__flex">
+                <div class="filter__fields-list">
+                  <fieldset class="filter__field">
+                    <legend class="filter__field-title">Цена</legend>
+                    <div class="filter__flex">
+                      <label><input type="number" name="price-start" placeholder="от" class="filter__input" /></label>
+                      <label><input type="number" name="price-end" placeholder="до" class="filter__input" /></label>
+                    </div>
+                  </fieldset>
+                  <fieldset class="filter__field">
+                    <legend class="filter__field-title">Категория</legend>
                     <label>
-                      <input type="checkbox" name="color" value="white" class="filter__checkbox" />Белый
+                      <select name="category" class="filter__input filter__input_select">
+                        <option value="all">Все категории</option>
+                        <option value="phone">Смартфоны</option>
+                        <option value="tablet">Планшеты</option>
+                        <option value="clock">Умные часы</option>
+                        <option value="monoblock">Моноблоки</option>
+                        <option value="notebook">Ноутбуки</option>
+                      </select>
                     </label>
-                    <label>
-                      <input type="checkbox" name="color" value="black" class="filter__checkbox" />Черный
-                    </label>
-                    <label>
-                      <input type="checkbox" name="color" value="silver" class="filter__checkbox" />Серебристый
-                    </label>
-                    <label>
-                      <input type="checkbox" name="color" value="red" class="filter__checkbox" />Красный
-                    </label>
-                    <label>
-                      <input type="checkbox" name="color" value="green" class="filter__checkbox" />Зеленый
-                    </label>
-                    <label>
-                      <input type="checkbox" name="color" value="gold" class="filter__checkbox" />Золотой
-                    </label>
-                  </div>
-                </fieldset>
+                  </fieldset>
+                  <fieldset class="filter__field">
+                    <legend class="filter__field-title">Диагональ</legend>
+                    <div class="filter__flex">
+                      <label><input type="number" name="diagonal-start" placeholder="от"
+                          class="filter__input" /></label>
+                      <label><input type="number" name="diagonal-end" placeholder="до" class="filter__input" /></label>
+                    </div>
+                  </fieldset>
+                  <fieldset class="filter__field">
+                    <legend class="filter__field-title">Цвет</legend>
+                    <div class="filter__flex filter__flex_column">
+                      <label>
+                        <input type="checkbox" name="color" value="white" class="filter__checkbox" />Белый
+                      </label>
+                      <label>
+                        <input type="checkbox" name="color" value="black" class="filter__checkbox" />Черный
+                      </label>
+                      <label>
+                        <input type="checkbox" name="color" value="silver" class="filter__checkbox" />Серебристый
+                      </label>
+                      <label>
+                        <input type="checkbox" name="color" value="red" class="filter__checkbox" />Красный
+                      </label>
+                      <label>
+                        <input type="checkbox" name="color" value="green" class="filter__checkbox" />Зеленый
+                      </label>
+                      <label>
+                        <input type="checkbox" name="color" value="gold" class="filter__checkbox" />Золотой
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
                 <button class="filter__apply" type="submit">Применить фильтр</button>
                 <button class="filter__reset" type="reset">Очистить все</button>
               </form>
@@ -232,6 +237,18 @@
                 <li class="pagination__item">
                   <a href="#" class="pagination__link">2</a>
                 </li>
+                <li class="pagination__item">
+                  <a href="#" class="pagination__link">3</a>
+                </li>
+                <li class="pagination__item">
+                  <a href="#" class="pagination__link">4</a>
+                </li>
+                <li class="pagination__item">
+                  <a href="#" class="pagination__link">5</a>
+                </li>
+                <li class="pagination__item">
+                  <a href="#" class="pagination__link">6</a>
+                </li>
               </ul>
               <a href="#" class="pagination__arrow pagination__arrow_end"
                 aria-label="Перейти на последнюю страницу">&rsaquo;</a>
@@ -242,36 +259,38 @@
     </main>
     <footer class="footer">
       <h2 class="visually-hidden">Меню и контакты сайта</h2>
-      <div class="container">
-        <a href="./"><img src="./img/logo.svg" alt="Логотип Techno Shop" class="footer__logo" /></a>
+      <div class="container footer__container">
+        <a href="./" class="footer__logo-link">
+          <img src="./img/logo.svg" alt="Логотип Techno Shop" class="footer__logo" />
+        </a>
         <div class="footer__column">
           <h3 class="footer__column-title">Каталог</h3>
           <ul class="footer__list footer__list_double">
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Смартфоны</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Электронные книги</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Планшеты</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Мониторы</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Умные часы</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Смарт-приставка</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Моноблоки</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Процессоры</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Ноутбуки</a>
             </li>
           </ul>
@@ -279,16 +298,16 @@
         <div class="footer__column">
           <h3 class="footer__column-title">Покупателям</h3>
           <ul class="footer__list">
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Оплата заказа</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Условия доставки</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Условия возврата заказа</a>
             </li>
-            <li class="footer__list-item">
+            <li class="footer__item">
               <a href="#" class="footer__link">Блог</a>
             </li>
           </ul>
@@ -296,10 +315,10 @@
         <div class="footer__column">
           <h3 class="footer__column-title">Контакты</h3>
           <ul class="footer__list footer__list_contacts">
-            <li class="footer__list-item">Тел:
+            <li class="footer__item footer__item_contact">Тел:
               <a href="tel:+79149239223" class="footer__link">8 914 923 92 - 23</a>
             </li>
-            <li class="footer__list-item">Email:
+            <li class="footer__item footer__item_contact">Email:
               <a href="mailto:TechnoSHOP@gmail.com" class="footer__link">TechnoSHOP@gmail.com</a>
             </li>
           </ul>
@@ -333,6 +352,13 @@
             </li>
           </ul>
         </div>
+        <div class="footer__copyright-brand">
+          &copy; TechnoSHOP, 2022
+        </div>
+        <div class="footer__copyright-design design">
+          <div class="design__name">Design by Anastasia Ilina</div>
+          Tg: <a href="https://t.me/Mrshmallowww" target="_blank" class="design__link">&#64;Mrshmallowww</a>
+        </div>
       </div>
     </footer>
     <div class="confirm">
@@ -346,7 +372,7 @@
     </div>
     <div class="error">
       <div class="error__title">Упс... Что-то пошло не так</div>
-      <div class="error__message"><b>Не удалось отправить заявку. Пожалуйста, повторите отправку еще раз</b></div>
+      <div class="error__message"><b>Не удалось отправить заказ. Пожалуйста, повторите отправку еще раз</b></div>
       <div class="error__icon">
         <svg width="100" height="100">
           <use href="./img/sprite.svg#error" />
