@@ -54,11 +54,51 @@
     }
   }
 
+  &__label {
+    cursor: pointer;
+  }
+
   &__checkbox {
-    margin-right: 10px;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+  }
+
+  &__span {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  &__span:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    border: 1px solid $color-primary;
+  }
+
+  &__checkbox:checked + &__span:after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    width: 16px;
+    height: 6px;
+    border-left: 2px solid $color-primary;
+    border-bottom: 2px solid $color-primary;
+    transform: rotate(-45deg);
   }
 
   &__apply {
+    display: block;
+    margin: 0 auto;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
