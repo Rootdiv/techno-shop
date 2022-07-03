@@ -43,12 +43,12 @@
     </header>
     <main>
       <section class="cart">
-        <h2 class="visually-hidden">Корзина</h2>
+        <h2 class="visually-hidden">Оформление заказа</h2>
         <div class="container cart__container">
           <section class="cart-goods">
-            <h3 class="cart-goods__title">Корзина</h3>
-            <ul class="cart-goods__list item">
-              <li class="cart-goods__item">
+            <h3 class="cart__title cart-goods__title">Корзина</h3>
+            <ul class="cart-goods__list">
+              <li class="cart-goods__item item">
                 <img src="./img/monitor.jpg" alt="" class="item__img" />
                 <div class="item__detail">
                   <h4 class="item__title">Монитор AOC 24G2U/BK</h4>
@@ -62,13 +62,13 @@
                   </div>
                   <p class="item__price">20799 ₽</p>
                   <button class="item__remove-cart" aria-label="Удалить товар из корзины">
-                    <svg width="32" height="33">
+                    <svg width="32" height="32">
                       <use href="#remove" />
                     </svg>
                   </button>
                 </div>
               </li>
-              <li class="cart-goods__item">
+              <li class="cart-goods__item item">
                 <img src="./img/monitor.jpg" alt="" class="item__img" />
                 <div class="item__detail">
                   <h4 class="item__title">Смарт-часы CANYON Lollypop</h4>
@@ -82,13 +82,13 @@
                   </div>
                   <p class="item__price">24485 ₽</p>
                   <button class="item__remove-cart" aria-label="Удалить товар из корзины">
-                    <svg width="32" height="33">
+                    <svg width="32" height="32">
                       <use href="#remove" />
                     </svg>
                   </button>
                 </div>
               </li>
-              <li class="cart-goods__item">
+              <li class="cart-goods__item item">
                 <img src="./img/monitor.jpg" alt="" class="item__img" />
                 <div class="item__detail">
                   <h4 class="item__title">Смарт-приставка Selenga R1</h4>
@@ -102,7 +102,7 @@
                   </div>
                   <p class="item__price">7944 ₽</p>
                   <button class="item__remove-cart" aria-label="Удалить товар из корзины">
-                    <svg width="32" height="33">
+                    <svg width="32" height="32">
                       <use href="#remove" />
                     </svg>
                   </button>
@@ -110,8 +110,49 @@
               </li>
             </ul>
           </section>
+          <section class="cart__total total">
+            <h3 class="visually-hidden">Итог</h3>
+            <div class="total__wrapper">
+              <ul class="total__table">
+                <li class="total__row total__row_header">
+                  <span>Итого</span>
+                  <span>41 222 ₽</span>
+                </li>
+                <li class="total__row total__row_gray">
+                  <span>Товары, 3 шт.</span>
+                  <span>41 222 ₽</span>
+                </li>
+                <li class="total__row total__row_gray">
+                  <span>Скидка</span>
+                  <span>0 ₽</span>
+                </li>
+                <li class="total__row total__row_gray total__row_gap">
+                  <span>Доставка</span>
+                  <span>0 ₽</span>
+                </li>
+                <li class="total__row">
+                  <span>Дата</span>
+                  <span>01 - 03 июля</span>
+                </li>
+                <li class="total__row">
+                  <span>Оплата</span>
+                  <span>Картой</span>
+                </li>
+              </ul>
+              <div class="total__order">
+                <button class="total__submit">Оформить заказ</button>
+                <label class="total__agree">
+                  <input type="checkbox" name="agree" required />
+                  <span>
+                    Согласен с <a href="#" class="total__agree-link">условиями</a> правил пользования торговой площадкой
+                    и&nbsp;правилами возврата
+                  </span>
+                </label>
+              </div>
+            </div>
+          </section>
           <section class="cart__address address">
-            <h3 class="cart__title">Адрес доставки</h3>
+            <h3 class="cart__title address__title">Адрес доставки</h3>
             <form class="address__form">
               <label>
                 <select class="address__item address__item_select" name="city">
@@ -137,45 +178,6 @@
                 Запомнить этот адрес
               </label>
             </form>
-          </section>
-          <section class="cart__total total">
-            <h3 class="visually-hidden">Итог</h3>
-            <ul class="total__table">
-              <li class="total__row total__row_header">
-                <span>Итого</span>
-                <span>41 222 ₽</span>
-              </li>
-              <li class="total__row total__row_gray">
-                <span>Товары, 3 шт.</span>
-                <span>41 222 ₽</span>
-              </li>
-              <li class="total__row total__row_gray">
-                <span>Скидка</span>
-                <span>0 ₽</span>
-              </li>
-              <li class="total__row total__row_gray">
-                <span>Доставка</span>
-                <span>0 ₽</span>
-              </li>
-              <li class="total__row">
-                <span>Дата</span>
-                <span>01 - 03 июля</span>
-              </li>
-              <li class="total__row">
-                <span>Оплата</span>
-                <span>Картой</span>
-              </li>
-            </ul>
-            <div class="total__order">
-              <button class="total__submit">Оформить заказ</button>
-              <label class="total__agree">
-                <input type="checkbox" name="agree">
-                <span>
-                  Согласен с <a href="#" class="total__agree-link">условиями</a> правил пользования торговой площадкой
-                  и&nbsp;правилами возврата
-                </span>
-              </label>
-            </div>
           </section>
         </div>
       </section>
@@ -285,7 +287,7 @@
       </div>
     </footer>
     <svg style="display: none">
-      <symbol id="remove" width="32" height="33" viewBox="0 0 32 33" fill="currentColor"
+      <symbol id="remove" width="32" height="32" viewBox="0 0 32 32" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
         <path
           d="m25.334 9.047-1.88-1.88L16 14.62 8.547 7.167l-1.88 1.88L14.12 16.5l-7.453 7.453 1.88 1.88L16 18.38l7.454 7.453 1.88-1.88L17.88 16.5l7.454-7.453Z" />
