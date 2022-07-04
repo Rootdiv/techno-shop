@@ -17,19 +17,20 @@
   }
 
   &__slide-thumb {
-    max-width: 460px;
+    max-width: 447px;
   }
 
   &__thumb-btn {
     width: 120px;
     height: 120px;
-    border: 2px solid transparent;
+    border: none;
     background-color: transparent;
     margin-bottom: 10px;
   }
 
   &__thumb-btn_active &__thumb-btn {
-    border: 2px solid $color-main;
+    outline: 2px solid $color-main;
+    outline-offset: -2px;
   }
 
   &__info {
