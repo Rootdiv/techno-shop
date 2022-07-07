@@ -1,6 +1,10 @@
 .address {
   margin-bottom: 110px;
 
+  @include laptop {
+    margin-bottom: 10px;
+  }
+
   &__title {
     margin-bottom: 30px;
   }
@@ -10,6 +14,23 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     color: $color-grey;
+
+    @include desktop {
+      grid-template-columns: repeat(2, 340px);
+      gap: 20px;
+    }
+
+    @include laptop {
+      grid-template-columns: repeat(2, 475px);
+    }
+
+    @include tablet {
+      grid-template-columns: repeat(2, 310px);
+    }
+
+    @include mobile {
+      grid-template-columns: 300px;
+    }
   }
 
   &__item {
@@ -42,5 +63,13 @@
     font-size: 14px;
     line-height: 17px;
     padding-top: 2px;
+
+    @include desktop {
+      grid-column: 2;
+    }
+
+    @include mobile {
+      grid-column: auto;
+    }
   }
 }

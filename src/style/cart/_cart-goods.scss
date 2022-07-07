@@ -7,6 +7,22 @@
     max-width: 990px;
     margin-bottom: 30px;
 
+    @include desktop {
+      max-width: 848px;
+    }
+
+    @include laptop {
+      max-width: 100%;
+    }
+
+    @include tablet {
+      margin-bottom: 20px;
+    }
+
+    @include mobile {
+      margin-bottom: 25px;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }

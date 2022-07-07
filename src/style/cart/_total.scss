@@ -44,6 +44,11 @@
     display: flex;
     justify-content: space-between;
     gap: 17px;
+
+    @include desktop {
+      padding: 0 50px;
+      flex-wrap: wrap;
+    }
   }
 
   &__submit {

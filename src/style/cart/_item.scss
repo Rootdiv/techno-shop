@@ -2,20 +2,51 @@
   display: flex;
   align-items: flex-start;
 
+  @include mobile {
+    flex-wrap: wrap;
+  }
+
   &__img {
     display: block;
     width: 200px;
     height: 200px;
     object-fit: cover;
     margin-right: 30px;
+
+    @include desktop {
+      width: 137px;
+      height: 137px;
+      margin-right: 8px;
+    }
+
+    @include mobile {
+      width: 104px;
+      height: 104px;
+      margin-right: 18px;
+    }
   }
 
   &__detail {
     flex-basis: 353px;
-    margin-right: 35px;
+    margin-right: 25px;
     display: flex;
     flex-direction: column;
     padding-top: 28px;
+
+    @include desktop {
+      flex-basis: 320px;
+      margin-right: 43px;
+      padding-top: 17px;
+    }
+
+    @include tablet {
+      flex-basis: 167px;
+      margin-right: 0;
+    }
+
+    @include mobile {
+      padding-top: 0;
+    }
   }
 
   &__title {
@@ -24,12 +55,23 @@
     font-weight: 700;
     font-size: 22px;
     line-height: 27px;
+
+    @include tablet {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 12px;
+    }
   }
 
   &__vendor-code {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
+
+    @include tablet {
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
 
   &__control {
@@ -38,6 +80,10 @@
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
+
+    @include mobile {
+      padding-top: 20px;
+    }
   }
 
   &__count {
@@ -47,6 +93,10 @@
     align-items: center;
     justify-content: space-between;
     margin-right: 70px;
+
+    @include desktop {
+      margin-right: 5px;
+    }
   }
 
   &__btn {

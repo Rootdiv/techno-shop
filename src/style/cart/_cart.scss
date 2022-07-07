@@ -4,6 +4,16 @@
     grid-template-columns: 3fr 2fr;
     justify-content: space-between;
     gap: 70px 30px;
+
+    @include desktop {
+      grid-template-columns: 848px 494px;
+      column-gap: 20px;
+    }
+
+    @include laptop {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
   }
 
   &__title {
@@ -14,5 +24,17 @@
 
   &__total {
     padding-top: 94px;
+
+    @include laptop {
+      padding-top: 0;
+      order: 2;
+      max-width: 454px;
+      justify-self: center;
+      margin-bottom: 120px;
+    }
+
+    @include tablet {
+      margin-bottom: 80px;
+    }
   }
 }
