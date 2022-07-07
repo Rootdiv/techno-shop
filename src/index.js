@@ -7,36 +7,27 @@ import Swiper, { Thumbs, Scrollbar, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
-import { pagination } from './modules/pagination';
-
-const paginationWrapper = document.querySelector('.pagination');
-const pageURL = new URL(location);
-const page = +pageURL.searchParams.get('page') || 1;
-
-let isMobile = false;
-
-const startPagination = () => {
-  if (window.innerWidth <= 560) {
-    pagination(paginationWrapper, 20, page, 4);
-    isMobile = true;
-  } else {
-    pagination(paginationWrapper, 20, page, 6);
-    isMobile = false;
-  }
-};
+import { startPagination } from './modules/pagination';
+import { getGoods } from './modules/goodsService';
+import { renderGoods } from './modules/renderGoods';
+import preloader from './img/preloader.svg';
 
 try {
-  startPagination();
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 560 && !isMobile) {
-      pagination(paginationWrapper, 20, page, 4);
-      isMobile = true;
-    }
+  const paginationWrapper = document.querySelector('.pagination');
+  const goodsList = document.querySelector('.goods__list');
+  const pageURL = new URL(location);
+  const page = +pageURL.searchParams.get('page') || 1;
 
-    if (window.innerWidth > 560 && isMobile) {
-      pagination(paginationWrapper, 20, page, 6);
-      isMobile = false;
-    }
+  goodsList.insertAdjacentHTML(
+    'afterbegin',
+    `<div class="goods__preloader">
+      <img src="${preloader}" alt="Загрузка..." />
+    </div>`,
+  );
+
+  getGoods({ page }).then(({ goods, pages, page }) => {
+    renderGoods(goodsList, goods);
+    startPagination(paginationWrapper, pages, page);
   });
 } catch (error) {
   console.warn(error);
