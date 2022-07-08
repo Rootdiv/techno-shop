@@ -6,12 +6,11 @@ const createCardImageSlider = largeImages => {
   const ul = document.createElement('ul');
   ul.className = 'swiper-wrapper';
   const cardImageSlides = largeImages.map(url => {
-    const li = document.querySelector('li');
+    const li = document.createElement('li');
     li.className = 'swiper-slide';
     const img = new Image();
     img.src = `${API_URI}/${url}`;
     li.append(img);
-    ul.append(li);
     return li;
   });
 
@@ -23,7 +22,7 @@ const createCardImageThumbSlider = smallImages => {
   const ul = document.createElement('ul');
   ul.className = 'swiper-wrapper';
   const cardImageThumbSlides = smallImages.map(url => {
-    const li = document.querySelector('li');
+    const li = document.createElement('li');
     li.className = 'swiper-slide';
     const button = document.createElement('button');
     button.className = 'card__thumb-btn';
