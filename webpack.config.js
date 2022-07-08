@@ -42,7 +42,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    new Critical(),
+    ...(devMode ? [] : [new Critical()]),
   ],
   module: {
     rules: [
