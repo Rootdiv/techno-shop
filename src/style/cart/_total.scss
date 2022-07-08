@@ -1,13 +1,35 @@
 .total {
+  position: relative;
+
+  @include laptop {
+    padding-top: 0;
+  }
+
   @include mobile {
-    position: relative;
-    left: -10px;
-    width: 320px;
-    border-width: 1px 0;
-    border-color: $color-grey;
-    border-style: solid;
-    border-radius: 0;
-    padding: 15px 10px 25px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc((100vw - 100%) / -2);
+      top: 0;
+      display: block;
+      width: 100vw;
+      height: 1px;
+      background-color: $color-primary;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc((100vw - 100%) / -2);
+      bottom: 0;
+      display: block;
+      width: 100vw;
+      height: 1px;
+      background-color: $color-primary;
+    }
   }
 
   &__wrapper {
@@ -62,11 +84,22 @@
 
       @include mobile {
         position: relative;
-        left: -10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 0;
+        padding-right: 0;
         padding-bottom: 4px;
         margin-bottom: 14px;
+        border-bottom: 0;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: calc((100vw - 100%) / -2);
+          bottom: 0;
+          display: block;
+          width: 100vw;
+          height: 1px;
+          background-color: $color-grey-light;
+        }
       }
     }
 

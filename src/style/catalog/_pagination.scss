@@ -52,6 +52,7 @@
 
     &_active {
       border-color: $color-main;
+      pointer-events: none;
     }
   }
 }
