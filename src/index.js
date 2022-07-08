@@ -3,10 +3,7 @@ import './cart.html';
 import './card.html';
 import './index.scss';
 
-import Swiper, { Pagination } from 'swiper';
 import 'swiper/css';
-import 'swiper/css/scrollbar';
-import 'swiper/css/pagination';
 
 import { startPagination } from './modules/pagination';
 import { getGoods, getGoodsItem } from './modules/goodsService';
@@ -70,13 +67,3 @@ try {
 } catch (error) {
   console.warn(error);
 }
-
-new Swiper('.recommended__carousel', {
-  modules: [Pagination],
-  slidesPerView: 5,
-  spaceBetween: 30,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-});

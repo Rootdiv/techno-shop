@@ -1,4 +1,6 @@
 import { API_URI } from './var';
+import Swiper, { Pagination } from 'swiper';
+import 'swiper/css/pagination';
 
 export const renderRecommended = (wrapper, goods) => {
   wrapper.textContent = '';
@@ -27,4 +29,14 @@ export const renderRecommended = (wrapper, goods) => {
   });
   ul.append(...cards);
   wrapper.append(ul, swiperPagination);
+
+  new Swiper('.recommended__carousel', {
+    modules: [Pagination],
+    slidesPerView: 5,
+    spaceBetween: 30,
+    pagination: {
+      el: swiperPagination,
+      clickable: true,
+    },
+  });
 };

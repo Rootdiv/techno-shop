@@ -1,7 +1,8 @@
 import { API_URI } from './var';
 import Swiper, { Thumbs, Scrollbar } from 'swiper';
+import 'swiper/css/scrollbar';
 
-const createImageSlider = largeImages => {
+const createCardImageSlider = largeImages => {
   const ul = document.createElement('ul');
   ul.className = 'swiper-wrapper';
   const cardImageSlides = largeImages.map(url => {
@@ -10,6 +11,7 @@ const createImageSlider = largeImages => {
     const img = new Image();
     img.src = `${API_URI}/${url}`;
     li.append(img);
+    ul.append(li);
     return li;
   });
 
@@ -17,10 +19,10 @@ const createImageSlider = largeImages => {
   return ul;
 };
 
-const createImageThumbSlider = smallImages => {
+const createCardImageThumbSlider = smallImages => {
   const ul = document.createElement('ul');
   ul.className = 'swiper-wrapper';
-  const cardImageSlides = smallImages.map(url => {
+  const cardImageThumbSlides = smallImages.map(url => {
     const li = document.querySelector('li');
     li.className = 'swiper-slide';
     const button = document.createElement('button');
@@ -32,7 +34,7 @@ const createImageThumbSlider = smallImages => {
     return li;
   });
 
-  ul.append(...cardImageSlides);
+  ul.append(...cardImageThumbSlides);
   return ul;
 };
 
@@ -60,12 +62,12 @@ const createDescription = descriptions => {
 
 export const renderItem = item => {
   const cardImage = document.querySelector('.card__image');
-  cardImage.append(createImageSlider(item.images.large));
+  cardImage.append(createCardImageSlider(item.images.large));
 
   const cardSliderThumb = document.querySelector('.card__slider-thumb');
   const swiperScrollbar = document.createElement('div');
   swiperScrollbar.className = 'swiper-scrollbar';
-  cardSliderThumb.append(createImageThumbSlider(item.images.small), swiperScrollbar);
+  cardSliderThumb.append(createCardImageThumbSlider(item.images.small), swiperScrollbar);
 
   const cardTitle = document.querySelector('.card__title');
   cardTitle.textContent = item.title;
