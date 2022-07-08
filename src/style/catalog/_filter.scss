@@ -36,6 +36,24 @@
     }
   }
 
+  &__label-select {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      right: 33px;
+      top: 50%;
+      transform: translateY(calc(-50% - 3px)) rotate(45deg);
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-width: 2px;
+      border-style: solid;
+      border-color: transparent $color-primary $color-primary transparent;
+    }
+  }
+
   &__flex {
     display: flex;
     gap: 10px;
@@ -64,6 +82,7 @@
     }
 
     &_select {
+      appearance: none;
       width: 100%;
       color: $color-grey;
       background-color: #fff;
@@ -127,6 +146,12 @@
     color: $color-secondary;
     padding: 8px 20px;
     border: 1px solid $color-primary;
+    transition: background-color 0.25s ease-in-out, border 0.25s ease-in-out;
+
+    &:hover {
+      background-color: $color-main;
+      border: 1px solid $color-main;
+    }
   }
 
   &__reset {
@@ -139,5 +164,10 @@
     color: $color-grey;
     background-color: transparent;
     border: none;
+    transition: color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-main;
+    }
   }
 }

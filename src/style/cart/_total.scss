@@ -1,12 +1,37 @@
 .total {
+  @include mobile {
+    position: relative;
+    left: -10px;
+    width: 320px;
+    border-width: 1px 0;
+    border-color: $color-grey;
+    border-style: solid;
+    border-radius: 0;
+    padding: 15px 10px 25px;
+  }
+
   &__wrapper {
     border: 1px solid $color-grey;
     border-radius: 20px;
     padding: 40px 20px;
+
+    @include laptop {
+      max-width: 454px;
+      margin: 0 auto;
+    }
+
+    @include mobile {
+      border-width: 0;
+      padding: 0;
+    }
   }
 
   &__table {
     margin-bottom: 50px;
+
+    @include mobile {
+      margin-bottom: 25px;
+    }
   }
 
   &__row {
@@ -17,6 +42,11 @@
     line-height: 22px;
     padding: 0 10px;
     margin-bottom: 20px;
+
+    @include mobile {
+      padding: 0;
+      margin-bottom: 10px;
+    }
 
     &:last-child {
       margin-bottom: 0;
@@ -29,6 +59,15 @@
       padding-bottom: 9px;
       border-bottom: 1px solid $color-grey-light;
       margin-bottom: 27px;
+
+      @include mobile {
+        position: relative;
+        left: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 4px;
+        margin-bottom: 14px;
+      }
     }
 
     &_gray {
@@ -37,6 +76,10 @@
 
     &_gap {
       margin-bottom: 40px;
+
+      @include mobile {
+        margin-bottom: 25px;
+      }
     }
   }
 
@@ -46,8 +89,9 @@
     gap: 17px;
 
     @include desktop {
-      padding: 0 50px;
       flex-wrap: wrap;
+      max-width: 352px;
+      margin: 0 auto;
     }
   }
 
@@ -60,6 +104,17 @@
     color: $color-secondary;
     background-color: $color-main;
     border: transparent;
+    transition: background-color 0.25s ease-in-out, border 0.25s ease-in-out;
+
+    &:hover {
+      background-color: $color-main-sub;
+      border: 1px solid $color-main-sub;
+    }
+
+    @include mobile {
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
 
   &__agree {
@@ -75,5 +130,10 @@
 
   &__agree-link {
     font-weight: 700;
+    color: $color-primary;
+
+    &:hover {
+      color: $color-main;
+    }
   }
 }

@@ -19,6 +19,10 @@
       opacity: 50%;
     }
 
+    &:hover {
+      color: $color-main;
+    }
+
     &[href=''] {
       opacity: 30%;
       pointer-events: none;
@@ -40,7 +44,11 @@
     height: 36px;
     border: 2px solid transparent;
     border-radius: 2px;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-main;
+    }
 
     &_active {
       border-color: $color-main;

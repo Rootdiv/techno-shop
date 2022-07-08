@@ -82,10 +82,23 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
+    transition: color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-main;
+    }
 
     @include mobile {
       font-size: 14px;
       line-height: 17px;
+    }
+  }
+
+  &__cart {
+    transition: color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-main;
     }
   }
 }

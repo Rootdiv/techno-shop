@@ -32,6 +32,11 @@
     line-height: 0;
     border: 0;
     background-color: transparent;
+    transition: color 0.25s ease-in-out;
+
+    &:hover {
+      color: $color-main;
+    }
 
     @include mobile {
       right: 15px;
