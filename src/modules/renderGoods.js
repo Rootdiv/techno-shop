@@ -3,6 +3,11 @@ import { API_URI } from './var';
 export const renderGoods = (wrapper, goods) => {
   wrapper.textContent = '';
 
+  if (!goods.length) {
+    wrapper.innerHTML = '<b>Нет товаров по вашему запросу</b>';
+    wrapper.style = 'padding: 10px; display: flex; justify-content: center;';
+  }
+
   const cards = goods.map(item => {
     const li = document.createElement('li');
     li.className = 'goods__item';

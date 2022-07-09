@@ -19,8 +19,8 @@
         <a href="./" class="header__logo-link">
           <img src="./img/logo.svg" alt="Логотип Techno Shop" class="header__logo" />
         </a>
-        <form class="header__search search">
-          <input type="search" class="search__input" />
+        <form action="/" class="header__search search">
+          <input type="search" class="search__input" name="search" />
           <button class="search__button" aria-label="Найти товар">
             <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -60,29 +60,27 @@
                   <fieldset class="filter__field">
                     <legend class="filter__field-title">Цена</legend>
                     <div class="filter__flex">
-                      <label><input type="number" name="price-start" placeholder="от" class="filter__input" /></label>
-                      <label><input type="number" name="price-end" placeholder="до" class="filter__input" /></label>
+                      <label><input type="number" name="minprice" placeholder="от" class="filter__input" /></label>
+                      <label><input type="number" name="maxprice" placeholder="до" class="filter__input" /></label>
                     </div>
                   </fieldset>
                   <fieldset class="filter__field">
                     <legend class="filter__field-title">Категория</legend>
                     <label class="filter__label-select">
-                      <select name="category" class="filter__input filter__input_select">
-                        <option value="all" selected>Все категории</option>
-                        <option value="phone">Смартфоны</option>
-                        <option value="tablet">Планшеты</option>
-                        <option value="clock">Умные часы</option>
-                        <option value="monoblock">Моноблоки</option>
-                        <option value="notebook">Ноутбуки</option>
+                      <select name="category" class="filter__input filter__input_select" id="category">
+                        <option selected>Все категории</option>
                       </select>
                     </label>
                   </fieldset>
                   <fieldset class="filter__field">
                     <legend class="filter__field-title">Диагональ</legend>
                     <div class="filter__flex">
-                      <label><input type="number" name="diagonal-start" placeholder="от"
-                          class="filter__input" /></label>
-                      <label><input type="number" name="diagonal-end" placeholder="до" class="filter__input" /></label>
+                      <label>
+                        <input type="number" name="mindisplay" step="any" placeholder="от" class="filter__input" />
+                      </label>
+                      <label>
+                        <input type="number" name="maxdisplay" step="any" placeholder="до" class="filter__input" />
+                      </label>
                     </div>
                   </fieldset>
                   <fieldset class="filter__field">
@@ -133,35 +131,7 @@
         </a>
         <div class="footer__column footer__catalog">
           <h3 class="footer__column-title">Каталог</h3>
-          <ul class="footer__list footer__list_double">
-            <li class="footer__item">
-              <a href="#" class="footer__link">Смартфоны</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Электронные книги</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Планшеты</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Мониторы</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Умные часы</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Смарт-приставка</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Моноблоки</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Процессоры</a>
-            </li>
-            <li class="footer__item">
-              <a href="#" class="footer__link">Ноутбуки</a>
-            </li>
-          </ul>
+          <ul class="footer__list footer__list_double"></ul>
         </div>
         <div class="footer__column footer__customer">
           <h3 class="footer__column-title">Покупателям</h3>

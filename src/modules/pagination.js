@@ -38,7 +38,9 @@ const pagination = (wrapper, pages, page, count) => {
         n = page - Math.floor(count / 2) + i;
       }
     }
-    const li = createItemPagination(`index.html?page=${n}`, n, page === n);
+    const url = new URL(location);
+    url.searchParams.set('page', n);
+    const li = createItemPagination(url, n, page === n);
     paginationList.append(li);
   }
 
