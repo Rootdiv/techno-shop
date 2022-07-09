@@ -1,10 +1,29 @@
 import { getCategory, getGoods } from './goodsService';
+import { showOverlay, hideOverlay } from './overlay';
 import { startPagination } from './pagination';
 import { preloader } from './preloader';
 import { renderGoods } from './renderGoods';
 
+const toggleFilter = (filter, catalogFilterBtn, filterTitle) => {
+  catalogFilterBtn.addEventListener('click', () => {
+    filter.classList.add('filter_show');
+    showOverlay();
+  });
+
+  filterTitle.addEventListener('click', () => {
+    filter.classList.remove('filter_show');
+    hideOverlay();
+  });
+};
+
 export const filter = (goodsList, paginationWrapper) => {
+  const filter = document.querySelector('.filter');
+  const catalogFilterBtn = document.querySelector('.catalog__filter-btn');
+  const filterTitle = document.querySelector('.filter__title');
   const category = document.getElementById('category');
+
+  toggleFilter(filter, catalogFilterBtn, filterTitle);
+
   getCategory().then(categoryList => {
     for (const categoryListKey in categoryList) {
       const option = document.createElement('option');
@@ -54,6 +73,8 @@ export const filter = (goodsList, paginationWrapper) => {
     history.pushState(null, null, url);
 
     getGoods().then(({ goods, pages, page }) => {
+      filter.classList.remove('filter_show');
+      hideOverlay();
       renderGoods(goodsList, goods);
       startPagination(paginationWrapper, pages, page);
     });
