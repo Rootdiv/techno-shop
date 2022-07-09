@@ -71,6 +71,11 @@
     line-height: 20px;
     transition: background-color 0.25s ease-in-out, border 0.25s ease-in-out;
 
+    &_remove {
+      background-color: $color-primary;
+      color: $color-secondary;
+    }
+
     @include mobile {
       font-size: 12px;
       line-height: 15px;

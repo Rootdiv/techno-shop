@@ -95,10 +95,26 @@
   }
 
   &__cart {
+    position: relative;
     transition: color 0.25s ease-in-out;
 
-    &:hover {
+    &:hover svg {
       color: $color-main;
+    }
+
+    &::after {
+      content: attr(data-count);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: $color-main;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      right: -10px;
+      bottom: -7px;
     }
   }
 }

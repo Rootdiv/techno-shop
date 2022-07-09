@@ -13,6 +13,8 @@ import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
 import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
+import { cartControl } from './modules/cartControl.';
+import { serviceCounter } from './modules/counterControl';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
@@ -28,6 +30,11 @@ try {
 
     getGoods().then(({ goods, pages, page }) => {
       renderGoods(goodsList, goods);
+      cartControl({
+        wrapper: goodsList,
+        classAdd: 'goods-item__to-card',
+        classDelete: 'goods-item__to-card_remove',
+      });
       startPagination(paginationWrapper, pages, page);
     });
   }
@@ -47,9 +54,17 @@ try {
     preloader(preloadWrapper);
     card.append(preloadWrapper);
 
+    serviceCounter({
+      selectorWrapper: '.card__count',
+      selectorNumber: '.card__number',
+      selectorDec: '.card__btn_dec',
+      selectorInc: '.card__btn_inc',
+    });
+
     getGoodsItem(id)
       .then(item => {
         renderItem(item);
+        cartControl({ classAdd: 'card__add-cart', classCount: 'card__number' });
         preloadWrapper.remove();
         return item.category;
       })
@@ -57,6 +72,11 @@ try {
       .then(data => {
         const goods = data.goods.filter(item => item.id !== id);
         renderRecommended(recommendedCarousel, goods);
+        cartControl({
+          wrapper: recommendedCarousel,
+          classAdd: 'goods-item__to-card',
+          classDelete: 'goods-item__to-card_remove',
+        });
       });
   }
 } catch (error) {
