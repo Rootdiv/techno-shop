@@ -63,8 +63,8 @@ export const filter = (goodsList, paginationWrapper) => {
     preloader(goodsList);
     const url = new URL(location);
     const search = url.searchParams.get('search');
-    console.log('search: ', search);
     url.search = '';
+    url.searchParams.set('search', search);
 
     for (const key in data) {
       url.searchParams.set(key, data[key]);

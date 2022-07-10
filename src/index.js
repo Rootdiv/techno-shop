@@ -5,9 +5,8 @@ import './index.scss';
 
 import 'swiper/css';
 
-import { startPagination } from './modules/pagination';
+import { getGoodsHandler } from './modules/getGoodsHandler';
 import { getCartItem, getGoods, getGoodsItem } from './modules/goodsService';
-import { renderGoods } from './modules/renderGoods';
 import { preloader } from './modules/preloader';
 import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
@@ -16,6 +15,7 @@ import { categoryFooter } from './modules/categoryFooter';
 import { cartControl } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
 import { renderCartItem } from './modules/renderCartItem';
+import { searchWithoutReload } from './modules/search';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
@@ -25,18 +25,15 @@ try {
   if (goodsList) {
     const paginationWrapper = document.querySelector('.pagination');
 
+    searchWithoutReload(goodsList, paginationWrapper);
+
     filter(goodsList, paginationWrapper);
 
     preloader(goodsList);
 
-    getGoods().then(({ goods, pages, page }) => {
-      renderGoods(goodsList, goods);
-      cartControl({
-        wrapper: goodsList,
-        classAdd: 'goods-item__to-card',
-        classDelete: 'goods-item__to-card_remove',
-      });
-      startPagination(paginationWrapper, pages, page);
+    getGoodsHandler(goodsList, paginationWrapper, {
+      classAdd: 'goods-item__to-card',
+      classDelete: 'goods-item__to-card_remove',
     });
   }
 } catch (error) {
