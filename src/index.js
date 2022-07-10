@@ -13,7 +13,7 @@ import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
 import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
-import { cartControl } from './modules/cartControl.';
+import { cartControl } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
 import { renderCartItem } from './modules/renderCartItem';
 
