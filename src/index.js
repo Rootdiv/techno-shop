@@ -6,7 +6,7 @@ import './index.scss';
 import 'swiper/css';
 
 import { startPagination } from './modules/pagination';
-import { getGoods, getGoodsItem } from './modules/goodsService';
+import { getCartItem, getGoods, getGoodsItem } from './modules/goodsService';
 import { renderGoods } from './modules/renderGoods';
 import { preloader } from './modules/preloader';
 import { renderItem } from './modules/renderItem';
@@ -15,6 +15,7 @@ import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
 import { cartControl } from './modules/cartControl.';
 import { serviceCounter } from './modules/counterControl';
+import { renderCartItem } from './modules/renderCartItem';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
@@ -78,6 +79,33 @@ try {
           classDelete: 'goods-item__to-card_remove',
         });
       });
+  }
+} catch (error) {
+  console.warn(error);
+}
+
+try {
+  const cartWrapper = document.querySelector('.cart-goods__list');
+  if (cartWrapper) {
+    const storage = localStorage.getItem('cart-ts');
+    const cartGoods = storage ? JSON.parse(storage) : [null];
+    const id = [];
+
+    for (const cartGoodsKey in cartGoods) {
+      id.push(cartGoodsKey);
+    }
+
+    getCartItem(id).then(goods => {
+      renderCartItem(cartWrapper, goods, cartGoods);
+      if (!cartGoods.length) {
+        serviceCounter({
+          selectorWrapper: '.item__count',
+          selectorNumber: '.item__number',
+          selectorDec: '.item__btn_dec',
+          selectorInc: '.item__btn_inc',
+        });
+      }
+    });
   }
 } catch (error) {
   console.warn(error);

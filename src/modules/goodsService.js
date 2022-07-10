@@ -14,3 +14,5 @@ export const getGoods = () => {
 export const getGoodsItem = id => fetch(`${API_URI}/api/goods/${id}`).then(response => response.json());
 
 export const getCategory = () => fetch(`${API_URI}/api/category`).then(response => response.json());
+
+export const getCartItem = id => fetch(`${API_URI}/api/goods?list=${id}`).then(response => response.json());
