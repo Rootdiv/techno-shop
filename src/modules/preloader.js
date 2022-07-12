@@ -1,10 +1,12 @@
 import preloaderSvg from '../img/preloader.svg';
 
+const div = document.createElement('div');
 export const preloader = wrapper => {
-  wrapper.insertAdjacentHTML(
-    'afterbegin',
-    `<div class="goods__preloader">
-      <img src="${preloaderSvg}" alt="Загрузка..." />
-    </div>`,
-  );
+  div.className = 'preloader';
+  div.insertAdjacentHTML('afterbegin', `<img src="${preloaderSvg}" alt="Загрузка..." />`);
+  wrapper.append(div);
+};
+
+export const preloaderRemove = () => {
+  div.remove();
 };

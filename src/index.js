@@ -6,15 +6,14 @@ import './index.scss';
 import 'swiper/css';
 
 import { getGoodsHandler } from './modules/getGoodsHandler';
-import { getCartItem, getGoods, getGoodsItem } from './modules/goodsService';
-import { preloader } from './modules/preloader';
+import { getGoods, getGoodsItem, getGoodsList } from './modules/goodsService';
+import { preloader, preloaderRemove } from './modules/preloader';
 import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
 import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
-import { cartControl } from './modules/cartControl';
+import { cartControl, renderCartItem } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
-import { renderCartItem } from './modules/renderCartItem';
 import { searchWithoutReload } from './modules/search';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
@@ -47,14 +46,11 @@ try {
   if (card) {
     const pageURL = new URL(location);
     const id = pageURL.searchParams.get('id');
-    const preloadWrapper = document.createElement('div');
-    preloadWrapper.className = 'card__preloader';
-    preloader(preloadWrapper);
-    card.append(preloadWrapper);
+    preloader(card);
 
     serviceCounter({
-      selectorWrapper: '.card__count',
-      selectorNumber: '.card__number',
+      wrapper: '.card__count',
+      number: '.card__number',
       selectorDec: '.card__btn_dec',
       selectorInc: '.card__btn_inc',
     });
@@ -63,7 +59,7 @@ try {
       .then(item => {
         renderItem(item);
         cartControl({ classAdd: 'card__add-cart', classCount: 'card__number' });
-        preloadWrapper.remove();
+        preloaderRemove();
         return item.category;
       })
       .then(category => getGoods({ category }))
@@ -82,27 +78,20 @@ try {
 }
 
 try {
-  const cartWrapper = document.querySelector('.cart-goods__list');
-  if (cartWrapper) {
+  const cart = document.querySelector('.cart');
+  if (cart) {
     const storage = localStorage.getItem('cart-ts');
     const cartGoods = storage ? JSON.parse(storage) : [null];
-    const id = [];
+    const list = Object.keys(cartGoods);
 
-    for (const cartGoodsKey in cartGoods) {
-      id.push(cartGoodsKey);
+    if (list.length) {
+      preloader(cart);
+      getGoodsList(list).then(goods => {
+        renderCartItem(goods, cartGoods);
+        cartControl();
+        preloaderRemove();
+      });
     }
-
-    getCartItem(id).then(goods => {
-      renderCartItem(cartWrapper, goods, cartGoods);
-      if (!cartGoods.length) {
-        serviceCounter({
-          selectorWrapper: '.item__count',
-          selectorNumber: '.item__number',
-          selectorDec: '.item__btn_dec',
-          selectorInc: '.item__btn_inc',
-        });
-      }
-    });
   }
 } catch (error) {
   console.warn(error);

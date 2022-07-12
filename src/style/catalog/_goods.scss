@@ -18,16 +18,4 @@
       gap: 10px;
     }
   }
-
-  &__preloader {
-    grid-column: 1 / 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      transform: rotate(0);
-      animation: rotation 1s infinite linear;
-    }
-  }
 }
