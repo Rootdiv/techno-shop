@@ -33,7 +33,10 @@ const createCardImageThumbSlider = smallImages => {
     return li;
   });
 
-  ul.append(...cardImageThumbSlides);
+  if (cardImageThumbSlides.length !== 1) {
+    ul.append(...cardImageThumbSlides);
+  }
+
   return ul;
 };
 
@@ -88,8 +91,19 @@ export const renderItem = item => {
   cardDescriptionText.append(...createDescription(item.description));
 
   const thumbSwiper = new Swiper(cardSliderThumb, {
-    spaceBetween: 44,
+    spaceBetween: 15,
     slidesPerView: 3,
+    breakpoints: {
+      768: {
+        spaceBetween: 20,
+      },
+      1024: {
+        spaceBetween: 27,
+      },
+      1600: {
+        spaceBetween: 44,
+      },
+    },
     modules: [Scrollbar],
     scrollbar: {
       el: swiperScrollbar,

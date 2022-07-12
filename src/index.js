@@ -6,7 +6,7 @@ import './index.scss';
 import 'swiper/css';
 
 import { getGoodsHandler } from './modules/getGoodsHandler';
-import { getGoods, getGoodsItem, getGoodsList } from './modules/goodsService';
+import { getGoodsCategoryItem, getGoodsItem, getGoodsList } from './modules/goodsService';
 import { preloader, preloaderRemove } from './modules/preloader';
 import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
@@ -41,7 +41,7 @@ try {
 
 try {
   const card = document.querySelector('.card');
-  const recommendedCarousel = document.querySelector('.recommended__carousel');
+  const recommended = document.querySelector('.recommended');
 
   if (card) {
     const pageURL = new URL(location);
@@ -62,15 +62,10 @@ try {
         preloaderRemove();
         return item.category;
       })
-      .then(category => getGoods({ category }))
+      .then(category => getGoodsCategoryItem(category))
       .then(data => {
         const goods = data.goods.filter(item => item.id !== id);
-        renderRecommended(recommendedCarousel, goods);
-        cartControl({
-          wrapper: recommendedCarousel,
-          classAdd: 'goods-item__to-card',
-          classDelete: 'goods-item__to-card_remove',
-        });
+        renderRecommended(recommended, goods);
       });
   }
 } catch (error) {
