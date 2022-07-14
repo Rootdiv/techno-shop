@@ -75,6 +75,8 @@ try {
 try {
   const cart = document.querySelector('.cart');
   if (cart) {
+    const totalSubmit = cart.querySelector('.total__submit');
+    const addressBtn = cart.querySelector('.address__item_btn');
     const storage = localStorage.getItem('cart-ts');
     const cartGoods = storage ? JSON.parse(storage) : [null];
     const list = Object.keys(cartGoods);
@@ -86,6 +88,8 @@ try {
         cartControl();
         preloaderRemove();
       });
+      totalSubmit.removeAttribute('disabled');
+      addressBtn.removeAttribute('disabled');
     }
   }
 } catch (error) {

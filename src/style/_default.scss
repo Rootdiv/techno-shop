@@ -103,6 +103,56 @@ input[type='search']::-webkit-search-cancel-button {
   display: none;
 }
 
+.custom {
+  &-label {
+    cursor: pointer;
+    position: relative;
+  }
+
+  &-checkbox {
+    outline: none;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    margin-right: 15px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 0;
+      top: 1px;
+      border: 1px solid $color-primary;
+
+      @include mobile {
+        top: 0;
+      }
+    }
+
+    &:focus::before {
+      border: 1px solid $color-main;
+    }
+
+    &:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 2px;
+      width: 16px;
+      height: 6px;
+      border-left: 2px solid $color-primary;
+      border-bottom: 2px solid $color-primary;
+      transform: rotate(-45deg);
+
+      @include mobile {
+        top: 1px;
+      }
+    }
+  }
+}
+
 .preloader {
   position: absolute;
   inset: 0;

@@ -130,7 +130,13 @@
     line-height: 20px;
     padding: 0 10px;
     height: 38px;
+    outline: none;
     border: 1px solid $color-primary;
+
+    &:focus {
+      content: '';
+      border: 1px solid $color-main;
+    }
 
     @include mobile {
       font-size: 14px;
@@ -151,50 +157,12 @@
     }
   }
 
-  &__label {
-    cursor: pointer;
-    position: relative;
-  }
-
   &__checkbox {
-    z-index: -1;
-    width: 0;
-    height: 0;
     margin-right: 25px;
   }
 
-  &__checkbox::before {
-    content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    left: 0;
-    top: 1px;
-    border: 1px solid $color-primary;
-
-    @include mobile {
-      top: 0;
-    }
-  }
-
-  &__checkbox:checked::after {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 2px;
-    width: 16px;
-    height: 6px;
-    border-left: 2px solid $color-primary;
-    border-bottom: 2px solid $color-primary;
-    transform: rotate(-45deg);
-
-    @include mobile {
-      top: 1px;
-    }
-  }
-
   &__apply {
+    outline: none;
     display: block;
     margin: 0 auto;
     font-weight: 500;
@@ -218,6 +186,17 @@
     &:hover {
       background-color: $color-main;
       border: 1px solid $color-main;
+    }
+
+    &:focus {
+      background-color: $color-main-sub;
+      border: 1px solid $color-main-sub;
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: $color-grey-light;
+      border: 1px solid $color-grey-light;
     }
   }
 

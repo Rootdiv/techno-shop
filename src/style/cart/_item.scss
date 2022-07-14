@@ -116,6 +116,11 @@
       background-color: $color-main;
       border: 1px solid $color-main;
     }
+
+    &:focus {
+      background-color: $color-main-sub;
+      border: 1px solid $color-main-sub;
+    }
   }
 
   &__number {
@@ -140,6 +145,10 @@
 
     &:hover {
       color: $color-main;
+    }
+
+    &:focus {
+      color: $color-main-sub;
     }
 
     @include mobile {

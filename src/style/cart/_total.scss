@@ -129,6 +129,7 @@
   }
 
   &__submit {
+    outline: none;
     flex-basis: 352px;
     height: 57px;
     font-weight: 700;
@@ -139,14 +140,25 @@
     border: transparent;
     transition: background-color 0.25s ease-in-out, border 0.25s ease-in-out;
 
+    @include mobile {
+      font-size: 12px;
+      line-height: 15px;
+    }
+
     &:hover {
       background-color: $color-main-sub;
       border: 1px solid $color-main-sub;
     }
 
-    @include mobile {
-      font-size: 12px;
-      line-height: 15px;
+    &:focus {
+      background-color: $color-main;
+      border: 1px solid $color-main-dark;
+    }
+
+    &:disabled {
+      cursor: default;
+      background-color: $color-grey-light;
+      border: 1px solid $color-grey-light;
     }
   }
 
