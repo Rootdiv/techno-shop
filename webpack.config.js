@@ -18,8 +18,8 @@ module.exports = {
     port: 3000,
     open: {
       app: {
-        name: 'google-chrome',
-        arguments: ['--new-window'],
+        //Запуск специального скрипта, который запускает 2 браузера
+        name: 'browsers-dev',
       },
     },
     hot: true,
