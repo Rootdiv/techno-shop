@@ -15,9 +15,13 @@ import { categoryFooter } from './modules/categoryFooter';
 import { cartControl, renderCartItem } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
 import { searchWithoutReload } from './modules/search';
+import { footerMenuToggle } from './modules/footerMenuToggle';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
+
+const footerContainer = document.querySelector('.footer__container');
+footerMenuToggle(footerContainer);
 
 try {
   const goodsList = document.querySelector('.goods__list');

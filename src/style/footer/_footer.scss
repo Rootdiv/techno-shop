@@ -37,18 +37,23 @@
     }
 
     @include mobile {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-template-areas:
         'logo'
         'catalog'
         'customer'
         'contacts';
+      gap: 15px;
     }
   }
 
   &__logo-link {
     place-self: start;
     grid-area: logo;
+
+    @include mobile {
+      margin-bottom: 15px;
+    }
   }
 
   &__logo {
@@ -62,7 +67,29 @@
     margin-bottom: 40px;
 
     @include mobile {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-size: 20px;
+      margin-bottom: 0;
+      cursor: pointer;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 18px;
+        height: 18px;
+        background-image: url('img/arrow-footer.svg');
+        background-repeat: no-repeat;
+        background-position: center 1px;
+      }
+
+      &_open {
+        &::after {
+          background-position: center -2px;
+          transform: rotate(180deg);
+        }
+      }
     }
   }
 
@@ -74,6 +101,13 @@
     @include mobile {
       font-size: 14px;
       line-height: 17px;
+      display: none;
+      padding-top: 15px;
+      padding-bottom: 10px;
+
+      &_show {
+        display: block;
+      }
     }
 
     &_double {
@@ -92,6 +126,7 @@
 
       @include mobile {
         font-size: 13px;
+        margin-bottom: 20px;
       }
     }
   }
@@ -101,6 +136,10 @@
 
     &_contact {
       margin-bottom: 21px;
+
+      @include mobile {
+        margin-bottom: 15px;
+      }
     }
 
     &:last-child {
@@ -121,10 +160,30 @@
 
   &__customer {
     grid-area: customer;
+
+    @include mobile {
+      margin-bottom: 10px;
+    }
   }
 
   &__contacts {
     grid-area: contacts;
+
+    @include mobile {
+      margin-bottom: 25px;
+
+      .footer__column-title {
+        cursor: default;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .footer__list {
+        display: block;
+      }
+    }
   }
 
   &__copyright {
@@ -136,6 +195,7 @@
 
       @include mobile {
         font-size: 14px;
+        margin-bottom: 15px;
       }
     }
   }
