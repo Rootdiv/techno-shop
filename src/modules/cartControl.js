@@ -12,7 +12,12 @@ const removeToCart = id => {
   const store = localStorage.getItem('cart-ts');
   const cartGoods = store ? JSON.parse(store) : {};
   delete cartGoods[id];
-  localStorage.setItem('cart-ts', JSON.stringify(cartGoods));
+  //Если cartGoods содержит ключи, то сохраняем данные иначе удаляем.
+  if (Object.keys(cartGoods).length) {
+    localStorage.setItem('cart-ts', JSON.stringify(cartGoods));
+  } else {
+    localStorage.removeItem('cart-ts');
+  }
 };
 
 const checkItems = ({ classAdd, classDelete, classCount } = {}) => {
