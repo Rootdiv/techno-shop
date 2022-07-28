@@ -12,7 +12,7 @@
     &::before {
       content: '';
       position: absolute;
-      left: calc((100vw - 100%) / -2);
+      left: calc((100vw - 95%) / -2);
       top: 0;
       display: block;
       width: 100vw;
@@ -23,7 +23,7 @@
     &::after {
       content: '';
       position: absolute;
-      left: calc((100vw - 100%) / -2);
+      left: calc((100vw - 95%) / -2);
       bottom: 0;
       display: block;
       width: 100vw;
@@ -93,7 +93,7 @@
         &::after {
           content: '';
           position: absolute;
-          left: calc((100vw - 100%) / -2);
+          left: calc((100vw - 95%) / -2);
           bottom: 0;
           display: block;
           width: 100vw;

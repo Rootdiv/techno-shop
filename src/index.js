@@ -82,7 +82,7 @@ try {
     const totalSubmit = cart.querySelector('.total__submit');
     const addressBtn = cart.querySelector('.address__item_btn');
     const storage = localStorage.getItem('cart-ts');
-    const cartGoods = storage ? JSON.parse(storage) : [null];
+    const cartGoods = storage ? JSON.parse(storage) : [];
     const list = Object.keys(cartGoods);
 
     if (list.length) {

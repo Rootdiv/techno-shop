@@ -1,16 +1,18 @@
 import { serviceCounter } from './counterControl';
+import { getGoodsList } from './goodsService';
+import { sendModal } from './sendModal';
 import { API_URI } from './var';
 
 const addToCart = (id, count = 1) => {
-  const store = localStorage.getItem('cart-ts');
-  const cartGoods = store ? JSON.parse(store) : {};
+  const storage = localStorage.getItem('cart-ts');
+  const cartGoods = storage ? JSON.parse(storage) : {};
   cartGoods[id] = count;
   localStorage.setItem('cart-ts', JSON.stringify(cartGoods));
 };
 
 const removeToCart = id => {
-  const store = localStorage.getItem('cart-ts');
-  const cartGoods = store ? JSON.parse(store) : {};
+  const storage = localStorage.getItem('cart-ts');
+  const cartGoods = storage ? JSON.parse(storage) : {};
   delete cartGoods[id];
   //Если cartGoods содержит ключи, то сохраняем данные иначе удаляем.
   if (Object.keys(cartGoods).length) {
@@ -21,8 +23,8 @@ const removeToCart = id => {
 };
 
 const checkItems = ({ classAdd, classDelete, classCount } = {}) => {
-  const store = localStorage.getItem('cart-ts');
-  const cartGoods = store ? JSON.parse(store) : {};
+  const storage = localStorage.getItem('cart-ts');
+  const cartGoods = storage ? JSON.parse(storage) : {};
   let count = 0;
   for (const cartGoodsKey in cartGoods) {
     count += cartGoods[cartGoodsKey];
@@ -76,7 +78,95 @@ export const cartControl = ({ wrapper, classAdd, classDelete, classCount } = {})
   }
 };
 
+const sendCart = cart =>
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify(cart),
+  });
+
+const renderTotalCart = (goods = []) => {
+  const storage = localStorage.getItem('cart-ts');
+  const cartGoods = storage ? JSON.parse(storage) : [];
+  const totalTable = document.querySelector('.total__table');
+  totalTable.textContent = '';
+  const totalCart = goods.reduce((sum, product) => product.price * cartGoods[product.id] + sum, 0);
+  const totalItemCart = goods.reduce((sum, product) => cartGoods[product.id] + sum, 0);
+  let delivery = 0;
+  if (totalCart) {
+    delivery = 500;
+  }
+  let percent = 0;
+  let discount = 0;
+  if (totalItemCart >= 10) {
+    percent = 5;
+    discount = Math.floor((totalCart / 100) * percent);
+  } else if (totalItemCart >= 20) {
+    percent = 10;
+    discount = Math.floor((totalCart / 100) * percent);
+  }
+  totalTable.insertAdjacentHTML(
+    'afterbegin',
+    `<li class="total__row total__row_header">
+      <span>Итого</span>
+      <span>${totalCart - discount + delivery} &#8381;</span>
+    </li>
+    <li class="total__row total__row_gray">
+      <span>Товары, ${totalItemCart} шт.</span>
+      <span>${totalCart} &#8381;</span>
+    </li>
+    <li class="total__row total__row_gray">
+      <span>Скидка</span>
+      <span>${discount} &#8381;</span>
+    </li>
+    <li class="total__row total__row_gray total__row_gap">
+      <span>Доставка</span>
+      <span>${delivery} &#8381;</span>
+    </li>
+    <li class="total__row">
+      <span>Дата</span>
+      <span>01 - 03 июля</span>
+    </li>
+    <li class="total__row">
+      <span>Оплата</span>
+      <span>Картой</span>
+    </li>`,
+  );
+
+  const sendGoods = goods.map(item => ({
+    goods: item,
+    count: cartGoods[item.id],
+  }));
+  sendGoods['delivery'] = delivery;
+  sendGoods['discount'] = discount;
+  sendGoods['totalPrice'] = totalCart;
+
+  const totalSubmit = document.querySelector('.total__submit');
+  const cartWrapper = document.querySelector('.cart-goods__list');
+  const totalAgreeCheckbox = document.querySelector('.total__agree-checkbox');
+  totalSubmit.addEventListener('click', () => {
+    if (totalAgreeCheckbox.checked) {
+      sendCart(sendGoods)
+        .then(response => {
+          if (response.ok) {
+            localStorage.removeItem('cart-ts');
+            sendModal('confirm');
+            checkItems();
+            renderTotalCart();
+            cartWrapper.textContent = '';
+            cartWrapper.insertAdjacentHTML('afterbegin', '<li class="cart-goods__null">В корзине нет товаров</li>');
+            totalAgreeCheckbox.checked = false;
+          }
+        })
+        .catch(error => {
+          sendModal('error');
+          console.error(error);
+        });
+    }
+  });
+};
+
 export const renderCartItem = (goods, cartGoods) => {
+  renderTotalCart(goods);
   const cartWrapper = document.querySelector('.cart-goods__list');
   cartWrapper.textContent = '';
 
@@ -152,7 +242,7 @@ export const renderCartItem = (goods, cartGoods) => {
       const target = event.target;
       if (target.closest('.item__btn_dec, .item__btn_inc')) {
         addToCart(item.id, +number.value);
-        checkItems();
+        renderTotalCart(goods);
       }
     });
 
@@ -160,6 +250,18 @@ export const renderCartItem = (goods, cartGoods) => {
       removeToCart(item.id);
       li.remove();
       checkItems();
+      const storage = localStorage.getItem('cart-ts');
+      const cartGoods = storage ? JSON.parse(storage) : [];
+      const list = Object.keys(cartGoods);
+      if (list.length === 0) {
+        renderTotalCart();
+        cartWrapper.insertAdjacentHTML('afterbegin', '<li class="cart-goods__null">В корзине нет товаров</li>');
+      } else {
+        getGoodsList(list).then(goods => {
+          renderCartItem(goods, cartGoods);
+          renderTotalCart(goods);
+        });
+      }
     });
   });
 };
