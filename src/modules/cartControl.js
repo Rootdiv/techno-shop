@@ -78,25 +78,25 @@ export const cartControl = ({ wrapper, classAdd, classDelete, classCount } = {})
   }
 };
 
-const sendCart = cart =>
-  fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    body: JSON.stringify(cart),
-  });
+const sendGoods = {};
 
 const renderTotalCart = (goods = []) => {
   const storage = localStorage.getItem('cart-ts');
   const cartGoods = storage ? JSON.parse(storage) : [];
+
   const totalTable = document.querySelector('.total__table');
   totalTable.textContent = '';
+
   const totalCart = goods.reduce((sum, product) => product.price * cartGoods[product.id] + sum, 0);
   const totalItemCart = goods.reduce((sum, product) => cartGoods[product.id] + sum, 0);
   let delivery = 0;
+  let percent = 0;
+  let discount = 0;
+
   if (totalCart) {
     delivery = 500;
   }
-  let percent = 0;
-  let discount = 0;
+
   if (totalItemCart >= 10) {
     percent = 5;
     discount = Math.floor((totalCart / 100) * percent);
@@ -104,6 +104,7 @@ const renderTotalCart = (goods = []) => {
     percent = 10;
     discount = Math.floor((totalCart / 100) * percent);
   }
+
   totalTable.insertAdjacentHTML(
     'afterbegin',
     `<li class="total__row total__row_header">
@@ -132,15 +133,22 @@ const renderTotalCart = (goods = []) => {
     </li>`,
   );
 
-  const sendGoods = goods.map(item => ({
+  sendGoods['goods'] = goods.map(item => ({
     goods: item,
     count: cartGoods[item.id],
   }));
   sendGoods['delivery'] = delivery;
   sendGoods['discount'] = discount;
   sendGoods['totalPrice'] = totalCart;
+};
 
-  const totalSubmit = document.querySelector('.total__submit');
+const sendCart = cart =>
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify(cart),
+  });
+
+export const totalSend = totalSubmit => {
   const cartWrapper = document.querySelector('.cart-goods__list');
   const totalAgreeCheckbox = document.querySelector('.total__agree-checkbox');
   totalSubmit.addEventListener('click', () => {

@@ -12,7 +12,7 @@ import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
 import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
-import { cartControl, renderCartItem } from './modules/cartControl';
+import { cartControl, renderCartItem, totalSend } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
 import { searchWithoutReload } from './modules/search';
 import { footerMenuToggle } from './modules/footerMenuToggle';
@@ -91,6 +91,7 @@ try {
         renderCartItem(goods, cartGoods);
         cartControl();
         preloaderRemove();
+        totalSend(totalSubmit);
       });
       totalSubmit.removeAttribute('disabled');
       addressBtn.removeAttribute('disabled');
