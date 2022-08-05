@@ -108,13 +108,13 @@
                   <option value="Volgograd">Волгоград</option>
                 </select>
               </label>
-              <label><input type="text" class="address__item" placeholder="Улица, дом" /></label>
-              <label><input type="text" class="address__item" placeholder="Квартира" /></label>
-              <label><input type="text" class="address__item" placeholder="ФИО" /></label>
-              <label><input type="text" class="address__item" placeholder="Индекс" /></label>
+              <label><input type="text" name="street" class="address__item" placeholder="Улица, дом" /></label>
+              <label><input type="text" name="flat" class="address__item" placeholder="Квартира" /></label>
+              <label><input type="text" name="full_name" class="address__item" placeholder="ФИО" /></label>
+              <label><input type="text" name="postcode" class="address__item" placeholder="Индекс" /></label>
               <button disabled class="address__item address__item_btn">Сохранить</button>
               <label class="address__label-save custom-label">
-                <input type="checkbox" name="" class="custom-checkbox" />
+                <input type="checkbox" name="save" class="address__save custom-checkbox" />
                 Запомнить этот адрес
               </label>
             </form>

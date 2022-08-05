@@ -80,7 +80,7 @@ export const cartControl = ({ wrapper, classAdd, classDelete, classCount } = {})
 
 const sendGoods = {};
 
-const renderTotalCart = (goods = []) => {
+const renderTotalCart = (goods, city = '') => {
   const storage = localStorage.getItem('cart-ts');
   const cartGoods = storage ? JSON.parse(storage) : [];
 
@@ -105,6 +105,32 @@ const renderTotalCart = (goods = []) => {
     discount = Math.floor((totalCart / 100) * percent);
   }
 
+  let deliveryDay = 3;
+  switch (true) {
+    case city === 'Kazan':
+      deliveryDay = 4;
+      break;
+    case city === 'Yekaterinburg':
+      deliveryDay = 6;
+      break;
+    case city === 'Chelyabinsk':
+      deliveryDay = 7;
+      break;
+    case city === 'Kaliningrad':
+      deliveryDay = 10;
+      break;
+    case city === 'Novosibirsk':
+      deliveryDay = 12;
+      break;
+    case city === 'Volgograd':
+      deliveryDay = 8;
+      break;
+  }
+  const date = new Date();
+  const dateStart = new Intl.DateTimeFormat('ru', { day: '2-digit', month: 'long' }).format(date);
+  const periodDay = date.setDate(date.getDate() + deliveryDay);
+  const dateEnd = new Intl.DateTimeFormat('ru', { day: '2-digit', month: 'long' }).format(periodDay);
+
   totalTable.insertAdjacentHTML(
     'afterbegin',
     `<li class="total__row total__row_header">
@@ -125,7 +151,7 @@ const renderTotalCart = (goods = []) => {
     </li>
     <li class="total__row">
       <span>Дата</span>
-      <span>01 - 03 июля</span>
+      <span>${dateStart} - ${dateEnd}</span>
     </li>
     <li class="total__row">
       <span>Оплата</span>
@@ -140,6 +166,18 @@ const renderTotalCart = (goods = []) => {
   sendGoods['delivery'] = delivery;
   sendGoods['discount'] = discount;
   sendGoods['totalPrice'] = totalCart;
+};
+
+export const cityChange = () => {
+  const storage = localStorage.getItem('cart-ts');
+  const cartGoods = storage ? JSON.parse(storage) : [];
+  const list = Object.keys(cartGoods);
+  const citySelect = document.querySelector('.address__item_select');
+  citySelect.addEventListener('change', () => {
+    getGoodsList(list).then(goods => {
+      renderTotalCart(goods, citySelect.value);
+    });
+  });
 };
 
 const sendCart = cart =>
@@ -159,7 +197,7 @@ export const totalSend = totalSubmit => {
             localStorage.removeItem('cart-ts');
             sendModal('confirm');
             checkItems();
-            renderTotalCart();
+            renderTotalCart([]);
             cartWrapper.textContent = '';
             cartWrapper.insertAdjacentHTML('afterbegin', '<li class="cart-goods__null">В корзине нет товаров</li>');
             totalAgreeCheckbox.checked = false;
@@ -174,7 +212,10 @@ export const totalSend = totalSubmit => {
 };
 
 export const renderCartItem = (goods, cartGoods) => {
-  renderTotalCart(goods);
+  const storage = localStorage.getItem('address-ts');
+  const city = storage ? JSON.parse(storage).city : '';
+  renderTotalCart(goods, city);
+
   const cartWrapper = document.querySelector('.cart-goods__list');
   cartWrapper.textContent = '';
 
@@ -251,6 +292,7 @@ export const renderCartItem = (goods, cartGoods) => {
       if (target.closest('.item__btn_dec, .item__btn_inc')) {
         addToCart(item.id, +number.value);
         renderTotalCart(goods);
+        checkItems();
       }
     });
 
@@ -262,7 +304,7 @@ export const renderCartItem = (goods, cartGoods) => {
       const cartGoods = storage ? JSON.parse(storage) : [];
       const list = Object.keys(cartGoods);
       if (list.length === 0) {
-        renderTotalCart();
+        renderTotalCart([]);
         cartWrapper.insertAdjacentHTML('afterbegin', '<li class="cart-goods__null">В корзине нет товаров</li>');
       } else {
         getGoodsList(list).then(goods => {

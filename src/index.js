@@ -12,10 +12,11 @@ import { renderItem } from './modules/renderItem';
 import { renderRecommended } from './modules/renderRecommended';
 import { filter } from './modules/filter';
 import { categoryFooter } from './modules/categoryFooter';
-import { cartControl, renderCartItem, totalSend } from './modules/cartControl';
+import { cartControl, cityChange, renderCartItem, totalSend } from './modules/cartControl';
 import { serviceCounter } from './modules/counterControl';
 import { searchWithoutReload } from './modules/search';
 import { footerMenuToggle } from './modules/footerMenuToggle';
+import { cartAddress } from './modules/cartAddress';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
@@ -80,18 +81,22 @@ try {
   const cart = document.querySelector('.cart');
   if (cart) {
     const totalSubmit = cart.querySelector('.total__submit');
-    const addressBtn = cart.querySelector('.address__item_btn');
+    const addressForm = document.querySelector('.address__form');
+    const addressBtn = addressForm.querySelector('.address__item_btn');
     const storage = localStorage.getItem('cart-ts');
     const cartGoods = storage ? JSON.parse(storage) : [];
     const list = Object.keys(cartGoods);
+    addressForm.reset();
 
     if (list.length) {
       preloader(cart);
       getGoodsList(list).then(goods => {
         renderCartItem(goods, cartGoods);
         cartControl();
+        cityChange();
         preloaderRemove();
         totalSend(totalSubmit);
+        cartAddress(addressForm, addressBtn);
       });
       totalSubmit.removeAttribute('disabled');
       addressBtn.removeAttribute('disabled');
