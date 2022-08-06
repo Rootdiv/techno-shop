@@ -190,7 +190,10 @@ export const totalSend = totalSubmit => {
   const cartWrapper = document.querySelector('.cart-goods__list');
   const totalAgreeCheckbox = document.querySelector('.total__agree-checkbox');
   totalSubmit.addEventListener('click', () => {
-    if (totalAgreeCheckbox.checked) {
+    const storage = localStorage.getItem('address-ts');
+    const cartAddress = storage ? JSON.parse(storage) : null;
+    sendGoods['address'] = cartAddress;
+    if (totalAgreeCheckbox.checked && sendGoods.address) {
       sendCart(sendGoods)
         .then(response => {
           if (response.ok) {

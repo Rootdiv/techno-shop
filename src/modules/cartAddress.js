@@ -1,4 +1,4 @@
-const cartAddressLoad = form => {
+export const cartAddressLoad = form => {
   const storage = localStorage.getItem('address-ts');
   const cartAddress = storage ? JSON.parse(storage) : null;
   if (cartAddress) {
@@ -12,22 +12,32 @@ const cartAddressLoad = form => {
     form.flat.value = cartAddress.flat;
     form.full_name.value = cartAddress.full_name;
     form.postcode.value = cartAddress.postcode;
-    form.save.checked = cartAddress.save;
+    form.save.checked = true;
   }
 };
 
-export const cartAddress = (form, btn) => {
+export const cartAddress = form => {
   cartAddressLoad(form);
-  const save = form.querySelector('.address__save');
-  btn.addEventListener('click', event => {
+  form.addEventListener('submit', event => {
     event.preventDefault();
-    if (save.checked) {
+    if (
+      form.city.value !== '' &&
+      form.street.value.trim() !== '' &&
+      form.flat.value.trim() !== '' &&
+      form.full_name.value.trim() !== '' &&
+      form.postcode.value.trim() !== '' &&
+      form.save.checked
+    ) {
       const formData = new FormData(form);
       const dataForm = {};
       formData.forEach((val, key) => {
-        dataForm[key] = val;
+        if (key !== 'save') {
+          dataForm[key] = val;
+        }
       });
       localStorage.setItem('address-ts', JSON.stringify(dataForm));
+    } else {
+      localStorage.removeItem('address-ts');
     }
   });
 };

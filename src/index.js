@@ -96,7 +96,7 @@ try {
         cityChange();
         preloaderRemove();
         totalSend(totalSubmit);
-        cartAddress(addressForm, addressBtn);
+        cartAddress(addressForm);
       });
       totalSubmit.removeAttribute('disabled');
       addressBtn.removeAttribute('disabled');
