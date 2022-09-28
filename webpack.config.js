@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Critical = require('critical-css-webpack-plugin');
+//Подключаем библиотеку для с работы файлами .env и указываем путь к файлу.
+require('dotenv').config({ path: path.resolve(__dirname, '', '.env.local') });
 
 const PAGES = ['index', 'cart', 'card'];
 
@@ -18,8 +20,9 @@ module.exports = {
     port: 3000,
     open: {
       app: {
-        //Запуск специального скрипта, который запускает 2 браузера
-        name: 'browsers-dev',
+        //Запуск браузера из переменной указанной в .env.local
+        //Если переменной нет, то запустится браузер по умолчанию.
+        name: process.env.BROWSER,
       },
     },
     hot: true,
