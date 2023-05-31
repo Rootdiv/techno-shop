@@ -1,3 +1,4 @@
+import { cartAddress } from './cartAddress';
 import { serviceCounter } from './counterControl';
 import { getGoodsList } from './goodsService';
 import { sendModal } from './sendModal';
@@ -159,7 +160,7 @@ const renderTotalCart = (goods, city = '') => {
     </li>`,
   );
 
-  sendGoods['goods'] = goods.map(item => ({
+  sendGoods['orderGoods'] = goods.map(item => ({
     goods: item,
     count: cartGoods[item.id],
   }));
@@ -181,18 +182,16 @@ export const cityChange = () => {
 };
 
 const sendCart = cart =>
-  fetch('https://jsonplaceholder.typicode.com/posts', {
+  fetch(`${API_URI}/api/order`, {
     method: 'POST',
     body: JSON.stringify(cart),
   });
 
-export const totalSend = totalSubmit => {
+export const totalSend = (totalSubmit, addressForm) => {
   const cartWrapper = document.querySelector('.cart-goods__list');
   const totalAgreeCheckbox = document.querySelector('.total__agree-checkbox');
   totalSubmit.addEventListener('click', () => {
-    const storage = localStorage.getItem('address-ts');
-    const cartAddress = storage ? JSON.parse(storage) : null;
-    sendGoods['address'] = cartAddress;
+    sendGoods['address'] = cartAddress(addressForm);
     if (totalAgreeCheckbox.checked && sendGoods.address) {
       sendCart(sendGoods)
         .then(response => {

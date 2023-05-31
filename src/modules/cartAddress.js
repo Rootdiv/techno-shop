@@ -10,24 +10,46 @@ export const cartAddressLoad = form => {
     }
     form.street.value = cartAddress.street;
     form.flat.value = cartAddress.flat;
-    form.full_name.value = cartAddress.full_name;
+    form.fullName.value = cartAddress.fullName;
     form.postcode.value = cartAddress.postcode;
     form.save.checked = true;
   }
 };
 
+const validForm = form => {
+  if (
+    form.city.value !== '' &&
+    form.street.value.trim() !== '' &&
+    form.flat.value.trim() !== '' &&
+    form.fullName.value.trim() !== '' &&
+    form.postcode.value.trim() !== ''
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const cartAddress = form => {
-  cartAddressLoad(form);
+  const storage = localStorage.getItem('address-ts');
+  if (storage) {
+    return JSON.parse(storage);
+  } else if (validForm(form)) {
+    return {
+      city: form.city.value,
+      street: form.street.value,
+      flat: form.flat.value,
+      fullName: form.fullName.value,
+      postcode: form.postcode.value,
+    };
+  }
+  return null;
+};
+
+export const cartAddressSave = form => {
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (
-      form.city.value !== '' &&
-      form.street.value.trim() !== '' &&
-      form.flat.value.trim() !== '' &&
-      form.full_name.value.trim() !== '' &&
-      form.postcode.value.trim() !== '' &&
-      form.save.checked
-    ) {
+    if (validForm(form) && form.save.checked) {
       const formData = new FormData(form);
       const dataForm = {};
       formData.forEach((val, key) => {

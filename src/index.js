@@ -16,7 +16,7 @@ import { cartControl, cityChange, renderCartItem, totalSend } from './modules/ca
 import { serviceCounter } from './modules/counterControl';
 import { searchWithoutReload } from './modules/search';
 import { footerMenuToggle } from './modules/footerMenuToggle';
-import { cartAddress } from './modules/cartAddress';
+import { cartAddressLoad, cartAddressSave } from './modules/cartAddress';
 
 const footerListCatalog = document.querySelector('.footer__list_double');
 categoryFooter(footerListCatalog);
@@ -95,8 +95,9 @@ try {
         cartControl();
         cityChange();
         preloaderRemove();
-        totalSend(totalSubmit);
-        cartAddress(addressForm);
+        cartAddressLoad(addressForm);
+        cartAddressSave(addressForm);
+        totalSend(totalSubmit, addressForm);
       });
       totalSubmit.removeAttribute('disabled');
       addressBtn.removeAttribute('disabled');
