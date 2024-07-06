@@ -62,14 +62,23 @@ try {
 
     getGoodsItem(id)
       .then(item => {
+        if (item.message) {
+          card.classList.add('card_empty');
+          card.textContent = '';
+          const p = document.createElement('p');
+          p.className = 'card__empty';
+          p.textContent = item.message;
+          card.append(p);
+          return;
+        }
         renderItem(item);
         cartControl({ classAdd: 'card__add-cart', classCount: 'card__number' });
         preloaderRemove();
         return item.category;
       })
-      .then(category => getGoodsCategoryItem(category))
+      .then(category => category && getGoodsCategoryItem(category))
       .then(data => {
-        const goods = data.goods.filter(item => item.id !== id);
+        const goods = data?.goods.filter(item => item.id !== id);
         renderRecommended(recommended, goods);
       });
   }

@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 
 export const renderRecommended = (recommended, goods) => {
   recommended.textContent = '';
-  if (goods.length) {
+  if (goods?.length) {
     const container = document.createElement('div');
     container.className = 'container';
     recommended.append(container);
